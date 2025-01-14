@@ -22,7 +22,7 @@ describe('End to End ecomerce Test', function () {
   it('Submit Order', function () {
 
     const productName = this.data.productName
-    this.homepage.goTo('https://rahulshettyacademy.com/loginpagePractise/')
+    this.homepage.goTo(Cypress.env('url') + '/loginpagePractise/')
     const productPage = this.homepage.login(this.data.username, this.data.password)
     productPage.pageValidation()
     productPage.getCartCount().should('have.length', 4)
