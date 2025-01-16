@@ -6,6 +6,10 @@ module.exports = defineConfig({
   env: {
     url: "https://rahulshettyacademy.com"
   },
+  retries: {
+    runMode: 1
+  },
+  projectId: "zg4n4r",
   e2e: {
     video: true,
     setupNodeEvents(on, config) {
