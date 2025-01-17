@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx cypress run",
+    "headedTest": "npx cypress run --headed",
+    "chromeTest": "npx cypress run --record --key a3597e65-2c08-4331-8da9-e2a1b88d1de1",
+    "RegressionTests": "npx cypress run --spec \"cypress/integration/examples/*\""
   },
   "author": "",
   "license": "ISC",
