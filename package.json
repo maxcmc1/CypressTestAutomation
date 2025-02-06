@@ -16,10 +16,17 @@
     "cypress": "^13.16.0",
     "cypress-iframe": "^1.0.1",
     "cypress-mochawesome-reporter": "^3.8.2",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "multiple-cucumber-html-reporter": "^3.9.0"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^22.0.0",
     "@cypress/browserify-preprocessor": "latest"
+  },
+  "cypress-cucumber-preprocessor": {
+    "json": {
+      "enabled": true,
+      "output": "cypress/cucumberReports/results.json"
+    }
   }
 }
