@@ -1,22 +1,28 @@
 import {Given, When, Then} from "@badeball/cypress-cucumber-preprocessor"
 import HomePage from "../../../../support/pageObjects/HomePage"
-const homepage = new HomePage()
+const homePage = new HomePage()
 
 
 Given('I am on Ecommerce page', ()=>{
-    homepage.goTo(Cypress.env('url') + '/loginpagePractise/')
+    homePage.goTo(Cypress.env('url') + '/loginpagePractise/')
 })
 
-When('I login to the application', ()=>{
+When('I login to the application', function(){
     this.productPage = homePage.login(this.data.username, this.data.password)
-    productPage.pageValidation()
-    productPage.getCartCount().should('have.length', 4)
+    this.productPage.pageValidation()
+    this.productPage.getCartCount().should('have.length', 4)
+})
+
+When('I login to the application portal', function(dataTable){
+    this.productPage = homePage.login(dataTable.rawTable[1][0], dataTable.rawTable[1][1])
+    this.productPage.pageValidation()
+    this.productPage.getCartCount().should('have.length', 4)
 })
 
 When('I add items to Cart and checkout', function(){
-    this.productPage.selectProduct(productName)
+    this.productPage.selectProduct(this.data.productName)
     this.productPage.selectFirstProduct()
-    this.cartPage = productPage.goToCart()
+    this.cartPage = this.productPage.goToCart()
 })
 
 When('Validate the total price limit', function(){
@@ -27,7 +33,7 @@ When('Validate the total price limit', function(){
 })
 
 Then('Select the country submit and verify Thankyou', function(){
-    const confirmationPage = cartPage.checkoutItems()
+    const confirmationPage = this.cartPage.checkoutItems()
     confirmationPage.submitFormDeatils()
     confirmationPage.getAlertMessage().should('contain', 'Success')
 })
