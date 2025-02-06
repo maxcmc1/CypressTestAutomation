@@ -7,14 +7,16 @@
     "test": "npx cypress run",
     "headedTest": "npx cypress run --headed",
     "chromeTest": "npx cypress run --record --key a3597e65-2c08-4331-8da9-e2a1b88d1de1",
-    "RegressionTests": "npx cypress run --spec \"cypress/integration/examples/*\""
+    "RegressionTests": "npx cypress run --spec \"cypress/integration/examples/*\"",
+    "prepare": "husky"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.16.0",
     "cypress-iframe": "^1.0.1",
-    "cypress-mochawesome-reporter": "^3.8.2"
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "husky": "^9.1.7"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^22.0.0",
