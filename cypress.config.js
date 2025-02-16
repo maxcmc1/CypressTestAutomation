@@ -33,6 +33,7 @@ module.exports = defineConfig({
   e2e: {
     video: true,
     setupNodeEvents,
-    specPattern: 'cypress/integration/examples/BDD/*.feature'
+    specPattern: 'cypress/integration/examples/',
+    //specPattern: 'cypress/integration/examples/BDD/*.feature'
   },
 });
