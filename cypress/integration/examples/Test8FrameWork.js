@@ -4,7 +4,7 @@ import 'cypress-iframe'
 import HomePage  from '../../support/pageObjects/HomePage'
 
 /*
-Use these hadny commands when dubugging/troubleshooting:
+Use these handy commands when dubugging/troubleshooting:
       cy.pause() or
       cy.log(this.data.username)
 */

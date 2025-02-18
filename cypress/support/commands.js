@@ -28,3 +28,11 @@ Cypress.Commands.add('submitFormDeatils', ()=>{
     cy.get('.suggestions a', { timeout: 15000 }).click()
     cy.get('input[value="Purchase"]').click()
 })
+
+Cypress.Commands.add("LoginAPI", ()=> {
+    cy.request("POST", "https://rahulshettyacademy.com/api/ecom/auth/login",{"userEmail":"rawData@gmail.com", "userPassword":"rawData!"}).
+    then(function(response){
+        expect(response.status).to.eq(200)
+        Cypress.env('token', response.body.token)
+    })
+})
