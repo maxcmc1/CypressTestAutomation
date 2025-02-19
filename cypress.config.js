@@ -6,10 +6,25 @@ const {
 const {
   preprendTransformerToOptions,
 } = require("@badeball/cypress-cucumber-preprocessor/browserify");
+const sqlServer = require('cypress-sql-server');
 
 async function setupNodeEvents(on, config){
-  await addCucumberPreprocessorPlugin(on, config);
 
+  config.db= {
+    userName: "xxxxx",
+    password: "xxxxx",
+    server: "xxxxx",
+    options: {
+        database: "xxxxx",
+        encrypt: true,
+        rowCollectionOnRequestCompletion: true
+    }
+}
+
+  tasks = sqlServer.loadDBPlugin(config.db);
+  on('task', tasks);
+
+  await addCucumberPreprocessorPlugin(on, config);
   on(
     "file:preprocessor",
     browserify(preprendTransformerToOptions(config, browserify.defaultOptions)),

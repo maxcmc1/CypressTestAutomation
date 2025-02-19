@@ -30,7 +30,7 @@ Cypress.Commands.add('submitFormDeatils', ()=>{
 })
 
 Cypress.Commands.add("LoginAPI", ()=> {
-    cy.request("POST", "https://rahulshettyacademy.com/api/ecom/auth/login",{"userEmail":"rawData@gmail.com", "userPassword":"rawData!"}).
+    cy.request("POST", "https://rahulshettyacademy.com/api/ecom/auth/login",{"userEmail":"xxxxx", "userPassword":"xxxxx"}).
     then(function(response){
         expect(response.status).to.eq(200)
         Cypress.env('token', response.body.token)

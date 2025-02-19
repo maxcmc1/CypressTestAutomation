@@ -16,6 +16,7 @@
     "cypress": "^13.16.0",
     "cypress-iframe": "^1.0.1",
     "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-sql-server": "^1.0.0",
     "husky": "^9.1.7",
     "multiple-cucumber-html-reporter": "^3.9.0",
     "neat-csv": "^5.2.0"

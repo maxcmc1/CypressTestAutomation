@@ -32,7 +32,7 @@ describe('JWT Session', () => {
         cy.wait(2000)
         cy.contains("Order Details in CSV").click()
 
-        cy.readFile(Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice_rawData.csv")
+        cy.readFile(Cypress.config("fileServerFolder")+"/cypress/downloads/order-invoice_maks.seli.qa.csv")
         .then(async(text) => {
             const csv = await neatCSV(text);
             console.log(csv)
