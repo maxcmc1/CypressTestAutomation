@@ -20,6 +20,7 @@ describe('JWT Session', () => {
         cy.get("[routerlink*='cart']").click()
         cy.contains("Checkout").click()
         cy.get("[placeholder*='Country']").type("ind")
+        
         cy.get('.ta-results button').each(($e1, index, $list) => {
 
             if($e1.text()===" India"){
