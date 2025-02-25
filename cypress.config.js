@@ -9,6 +9,8 @@ const {
 const sqlServer = require('cypress-sql-server');
 const excelToJson = require("convert-excel-to-json");
 const fs = require('fs');
+const ExcelJs = require('exceljs');
+const { error } = require("console");
 
 async function setupNodeEvents(on, config){
 
@@ -41,9 +43,41 @@ async function setupNodeEvents(on, config){
     browserify(preprendTransformerToOptions(config, browserify.defaultOptions)),
   );
 
+  on('task', {
+    async writeExcelTest({searchText, replaceText, change, filePath}) {
+        
+        const workbook = new ExcelJs.Workbook();
+        await workbook.xlsx.readFile(filePath)
+        const worksheet = workbook.getWorksheet('Sheet1');
+        const output = await readExcel(worksheet, searchText);
+        
+        const cell = worksheet.getCell(output.row,output.column+change.colChange);
+        cell.value = replaceText;
+        return workbook.xlsx.writeFile(filePath).then(()=>{
+          return true;
+        }).catch((error)=>{
+          return false;
+        })
+    }
+  })
+
   // Make sure to return the config object as it might have been modified by the plugin.
   return config;
   // require('cypress-mochawesome-reporter/plugin')(on); 
+}
+
+async function readExcel(worksheet, searchText) {
+
+  let output = {row:-1, column:-1};
+  worksheet.eachRow((row, rowNumber) =>{
+      row.eachCell((cell, colNumber)=>{
+          if(cell.value === searchText){
+              output.row=rowNumber;
+              output.column=colNumber;
+          }
+      })
+  })
+  return output;
 }
 
 module.exports = defineConfig({
